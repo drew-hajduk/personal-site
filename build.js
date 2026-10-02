@@ -180,7 +180,7 @@ for (const a of articles) {
 
 // Homepage
 const homeBody = fill(tpl('home.html'), {
-  rail, nav: navFor(true), footer, email: esc(site.email),
+  rail, nav: navFor(true), footer, linkedin: site.linkedin,
   writing: articles.slice(0, 3).map(writingItem).join('\n'),
 });
 write('index.html', head({ title: site.homeTitle, description: site.homeDescription, ogType: 'profile', urlPath: '/' })
