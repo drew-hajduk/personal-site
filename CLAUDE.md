@@ -50,4 +50,5 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 - Run `node build.js` and check the output in `dist/` before committing.
 - Prefer working on a branch and opening a pull request so Drew can check the preview link Cloudflare builds before it goes live. Small fixes can go straight to `master` if Drew asks.
 - `site.json` holds the site address and LinkedIn URL.
+- Contact form secrets (`TURNSTILE_SECRET`, `CONTACT_TO`) live in the Worker's **Runtime variables and secrets** in the Cloudflare dashboard, type Secret, never in the repo and never in Build variables. `/api/contact/status` reports which settings are missing (names only).
 - Hosting: Cloudflare Workers with static assets (`wrangler.jsonc` publishes `dist`). Build command `npm run build`, deploy command `npx wrangler deploy`.
