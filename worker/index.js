@@ -75,6 +75,11 @@ async function handleContact(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/contact/status') {
+      // Setup check: lists which settings are missing (names only, never values).
+      const missing = ['TURNSTILE_SECRET', 'CONTACT_TO', 'CONTACT_FROM', 'EMAIL'].filter(k => !env[k]);
+      return json({ ready: missing.length === 0, missing });
+    }
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
       return handleContact(request, env);
