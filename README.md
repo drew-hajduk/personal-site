@@ -53,3 +53,16 @@ The site deploys as a Cloudflare Worker serving static files. `wrangler.jsonc` t
 
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
+
+## Contact form setup
+
+The form on the homepage posts to `/api/contact`, handled by the Worker in `worker/index.js`. Spam protection is Cloudflare Turnstile plus a hidden honeypot field, a minimum fill time and length limits. Email is sent through Cloudflare Email Routing, so no email address appears on the site or in this repository.
+
+One-off setup in Cloudflare:
+
+1. **Email Routing**: on the drewhajduk.co.uk zone, enable Email Routing and add the destination address (the one that should receive messages), then confirm the verification email Cloudflare sends to it.
+2. **Turnstile**: create a widget for drewhajduk.co.uk (Managed). Put the **site key** in `site.json` as `turnstileSiteKey` (it is public). It currently holds Cloudflare's always-pass test key, so replace it.
+3. **Secrets**: in the Worker's settings, add `TURNSTILE_SECRET` (the widget's secret key) and `CONTACT_TO` (the verified destination address). While `TURNSTILE_SECRET` is the test secret `1x0000000000000000000000000000000AA`, the check always passes, so use the real one.
+4. `CONTACT_FROM` in `wrangler.jsonc` (`website@drewhajduk.co.uk`) must be on the same domain as Email Routing. Change it there if needed.
+
+Until the secrets exist, the form shows a message pointing people to LinkedIn instead.

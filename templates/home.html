@@ -109,10 +109,20 @@
   <section id="contact" data-label="Contact" class="col">
     <p class="eyebrow">Contact</p>
     <h2>Need help building HR software? Let's talk.</h2>
-    <p>The best way to reach me is a message on LinkedIn. Tell me a little about what you're building and I'll get back to you.</p>
-    <div class="contact-row">
-      <a class="button" href="{{linkedin}}" rel="me noopener" target="_blank">Message me on LinkedIn ↗</a>
-    </div>
+    <p>Tell me a little about what you're building and I'll get back to you.</p>
+    <form class="contact-form" id="contact-form" action="/api/contact" method="post" novalidate>
+      <label>Name<input name="name" type="text" autocomplete="name" maxlength="100" required></label>
+      <label>Email<input name="email" type="email" autocomplete="email" maxlength="200" required></label>
+      <label>Message<textarea name="message" rows="6" maxlength="5000" required></textarea></label>
+      <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="t" value="">
+      <div class="cf-turnstile" data-sitekey="{{turnstileSiteKey}}" data-theme="auto"></div>
+      <div class="contact-row">
+        <button class="button" type="submit">Send message</button>
+        <a class="more" href="{{linkedin}}" rel="me noopener" target="_blank">Or message me on LinkedIn ↗</a>
+      </div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
   </section>
 
 {{footer}}

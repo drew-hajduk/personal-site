@@ -26,7 +26,7 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 
 ## Decisions already made
 
-- No email address anywhere on the site (spam). Contact is via LinkedIn for now. A contact form (Cloudflare Turnstile plus a Worker that forwards to email) is planned.
+- No email address anywhere on the site or in the repo (spam). Contact is a form (Cloudflare Turnstile plus a Worker in `worker/index.js` that forwards to email, recipient held in the `CONTACT_TO` secret) with a LinkedIn link alongside. Setup is in README.md.
 - PAYgrade appears with one static screenshot, a customer quote and the demo video. A step-by-step product tour was tried and removed as too promotional.
 - Only the Knowledge & Expertise level descriptors are public. Never publish screenshots or text showing descriptors for other PAYgrade factors, weightings or scoring logic.
 - Customer quotes: Laura Allam (Orders of St John Care Trust) for PAYgrade, Samantha Perry (David Lloyd) for PAYreview. Keep wording exactly as given.

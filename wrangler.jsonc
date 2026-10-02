@@ -1,8 +1,19 @@
 {
-  // Cloudflare Workers settings: serve the built site in dist/ as static files.
+  // Cloudflare Workers settings: serve the built site in dist/ as static files,
+  // with a small Worker (worker/index.js) handling the contact form at /api/contact.
   "name": "personal-site",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // Sends the form email through Cloudflare Email Routing. The recipient is not set here:
+  // it comes from the CONTACT_TO secret so no address is stored in the repository.
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "CONTACT_FROM": "website@drewhajduk.co.uk"
   }
+  // Secrets (set in the Cloudflare dashboard, never committed): TURNSTILE_SECRET, CONTACT_TO
 }

@@ -53,4 +53,29 @@
       try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
     });
   }
+  // Contact form: loads the Turnstile spam check only when the form is on the page, then sends via fetch.
+  const form = document.getElementById('contact-form');
+  if (form) {
+    const status = document.getElementById('form-status');
+    const send = form.querySelector('button[type="submit"]');
+    form.elements.t.value = Date.now();
+    const ts = document.createElement('script');
+    ts.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    ts.async = true;
+    document.head.appendChild(ts);
+    const say = (text, error) => { status.textContent = text; status.classList.toggle('error', !!error); };
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      send.disabled = true; say('Sending…');
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) { form.reset(); form.elements.t.value = Date.now(); say('Thanks, your message is sent. I\'ll reply as soon as I can.'); }
+        else { say(data.error || 'Something went wrong. Please try again.', true); }
+      } catch (err) { say('Could not send. Please check your connection or message me on LinkedIn.', true); }
+      if (window.turnstile) window.turnstile.reset();
+      send.disabled = false;
+    });
+  }
 })();
