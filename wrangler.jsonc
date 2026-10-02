@@ -1,0 +1,8 @@
+{
+  // Cloudflare Workers settings: serve the built site in dist/ as static files.
+  "name": "personal-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}

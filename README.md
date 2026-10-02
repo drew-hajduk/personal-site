@@ -47,10 +47,9 @@ Every `:::` block must close with a line containing only `:::`. If something is 
 
 With Node.js 18 or later installed, run `node build.js`. The finished site appears in `dist/`.
 
-## Cloudflare Pages settings
+## Cloudflare settings
 
-Connect this repository to a Cloudflare Pages project with:
+The site deploys as a Cloudflare Worker serving static files. `wrangler.jsonc` tells Cloudflare to publish the `dist` folder. In the Cloudflare project:
 
-- Framework preset: None
-- Build command: `node build.js`
-- Build output directory: `dist`
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
