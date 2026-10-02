@@ -12,6 +12,8 @@
   // Sends the form email through Cloudflare Email Routing. The recipient is not set here:
   // it comes from the CONTACT_TO secret so no address is stored in the repository.
   "send_email": [{ "name": "EMAIL" }],
+  // Keep any variables set in the dashboard when deploying, so they are not wiped.
+  "keep_vars": true,
   "vars": {
     "CONTACT_FROM": "website@drewhajduk.co.uk"
   }
