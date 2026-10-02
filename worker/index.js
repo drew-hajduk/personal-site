@@ -40,7 +40,9 @@ function buildEmail({ from, to, name, email, message }) {
 }
 
 async function handleContact(request, env) {
-  if (!env.TURNSTILE_SECRET || !env.CONTACT_TO || !env.CONTACT_FROM || !env.EMAIL) return json({ error: 'The contact form is not set up yet. Please message me on LinkedIn instead.' }, 503);
+  const missing = ['TURNSTILE_SECRET', 'CONTACT_TO', 'CONTACT_FROM', 'EMAIL'].filter(k => !env[k]);
+  if (missing.length) console.error('Contact form not set up. Missing:', missing.join(', '));
+  if (missing.length) return json({ error: 'The contact form is not set up yet. Please message me on LinkedIn instead.' }, 503);
 
   let form;
   try { form = await request.formData(); } catch { return json({ error: 'Something went wrong. Please try again.' }, 400); }
