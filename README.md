@@ -32,7 +32,7 @@ Every `:::` block must close with a line containing only `:::`. If something is 
 
 `site.json` holds the settings used across the site:
 
-- `url`: the full web address once the domain is live, for example `https://drewhajduk.com`. Setting it turns on the sitemap, the RSS feed (`/feed.xml`) and full links for search engines and social sharing.
+- `url`: the full web address once the domain is live, for example `https://drewhajduk.co.uk`. Setting it turns on the sitemap, the RSS feed (`/feed.xml`) and full links for search engines and social sharing.
 - `email`: the contact email shown on the homepage.
 - `linkedin`: your LinkedIn profile.
 
