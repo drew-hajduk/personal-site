@@ -205,6 +205,7 @@ write('articles/index.html', head({ title: 'Writing · Drew Hajduk', description
 
 // Work with me page
 const OFFERS = [
+  { name: 'Free product review session', price: 0, unit: null, description: 'A free 45-minute video call reviewing an HR software product, prototype or plans, with the three things to fix or decide first.' },
   { name: 'Fractional product support: Advisor', price: 1500, unit: 'MON', description: 'About one day a month: monthly strategy session, review of plans and answers to questions within 2 working days.' },
   { name: 'Fractional product support: Partner', price: 2500, unit: 'MON', description: 'Two days a month: roadmap and priority decisions, reviews of the team\'s designs and builds.' },
   { name: 'Fractional product support: Lead', price: 4000, unit: 'MON', description: 'One day a week as fractional head of product: direction, planning, directing designers and developers, launch plan.' },
@@ -225,7 +226,7 @@ write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', og
 
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
-const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}: £${o.price.toLocaleString('en-GB')}${o.unit ? ' a month' : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than designing hands-on; design is done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
+const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than designing hands-on; design is done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
 const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n- PAYgrade demo video: https://youtu.be/DYFjOQDFBas\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
 write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsArticles, outro, links].join('\n\n'));
