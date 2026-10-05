@@ -1,6 +1,6 @@
 # Drew Hajduk
 
-> Drew Hajduk is a UK-based HR software product designer and founder, based in the North of England. He designs pay and reward products for HR teams, and founded and launched PAYgrade and PAYreview.
+> Drew Hajduk is a UK-based HR software product leader and founder, based in the North of England. He leads the design of pay and reward products for HR teams, and founded and launched PAYgrade and PAYreview.
 
 ## About
 
@@ -19,6 +19,6 @@
 Drew helps teams planning a new HR, pay or reward product, or improving an existing one, with:
 
 - Product strategy and roadmaps for HR tech
-- UX and interface design for HR, pay and reward software
+- Design direction for HR, pay and reward software (Drew leads; hands-on design is done by the client's team or trusted partners)
 - Taking an HR software product from idea to launch
 - Improving and scaling an existing HR platform

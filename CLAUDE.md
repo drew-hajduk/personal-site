@@ -12,7 +12,7 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 
 - Drew Hajduk, UK-based, proudly up North (North of England).
 - HR software product designer and founder. Founded and launched PAYgrade (job evaluation and salary banding platform, around 25 organisations) and PAYreview (pay review software).
-- Experienced product designer who runs product-focused digital businesses. Covers product design, product strategy and continuous development, secure and reliable software (with technical and security partners), and building businesses.
+- Company MD with 16 years in the design industry. A product designer by trade who now leads rather than designs hands-on: describe him as an HR software product leader, never as someone doing hands-on design. Covers design direction, product strategy and continuous development, secure and reliable software (with technical and security partners), and building businesses. Runs other businesses alongside client work, so capacity is limited.
 - LinkedIn: https://www.linkedin.com/in/drew-hajduk/
 - Do not invent biography, clients, numbers or claims. Ask Drew if something is needed.
 
@@ -29,6 +29,7 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 - No email address anywhere on the site or in the repo (spam). Contact is a form (Cloudflare Turnstile plus a Worker in `worker/index.js` that forwards to email, recipient held in the `CONTACT_TO` secret) with a LinkedIn link alongside. Setup is in README.md.
 - PAYgrade appears with one static screenshot, a customer quote and the demo video. A step-by-step product tour was tried and removed as too promotional.
 - Only the Knowledge & Expertise level descriptors are public. Never publish screenshots or text showing descriptors for other PAYgrade factors, weightings or scoring logic.
+- Services are on `/work-with-me/`: fractional product leadership only, at Advisor (about 1 day a month, £1,500 a month), Partner (2 days a month, £2,500) and Lead (1 day a week, £4,000). Lead magnet: a free 45-minute product review session (a few each month), booked through the contact form. No paid fixed-price projects or sprints; Drew doesn't do day-to-day delivery. Design is done by the client's team or trusted partners Drew directs. Prices live in `templates/work-with-me.html` and the `OFFERS` list in `build.js`; keep both in step.
 - Customer quotes: Laura Allam (Orders of St John Care Trust) for PAYgrade, Samantha Perry (David Lloyd) for PAYreview. Keep wording exactly as given.
 
 ## Design system
