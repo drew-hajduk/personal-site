@@ -7,6 +7,7 @@ summary: A practical checklist of what HR, pay and reward software needs to supp
 standfirst: The EU Pay Transparency Directive turns pay data that sat in spreadsheets into something employers have to explain, share and report. For anyone building HR software, that's a list of features. Here it is.
 inShort: To support the EU Pay Transparency Directive, HR software needs to hold pay ranges and the criteria behind them, group roles by equal work or work of equal value using objective, gender-neutral criteria, handle workers' requests for pay information within two months, capture every component of pay, produce the seven gender pay gap indicators, flag unexplained gaps of 5% or more, and keep a record of how pay decisions were made. Employers' duties come from each country's national law, and most EU countries were still finalising theirs in 2026.
 pointLabel: Requirement
+pdf: /downloads/pay-transparency-checklist.pdf
 topics: Pay transparency, EU Pay Transparency Directive, Gender pay gap reporting, Job evaluation, HR software design, Reward software
 ---
 

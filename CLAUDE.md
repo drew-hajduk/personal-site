@@ -49,6 +49,13 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 - Articles should show Drew's product and design thinking, not only HR knowledge. "For product teams" takeaways are the established pattern.
 - Use specific dates rather than "this year".
 
+## Free resources
+
+- `/resources/` lists free resources from `content/resources.json` (title, summary, type, url, pdf, updated). Everything is ungated: no email forms in front of resources, so search engines and AI assistants can read them.
+- The glossary lives in `content/resources/glossary.md` (`## Section`, then `### Term` and a plain-English definition). Each term gets its own link and DefinedTerm structured data.
+- Each resource has a web page and a PDF in `public/downloads/`. After changing a resource, run `python3 tools/make_pdfs.py` to regenerate the PDFs (needs Playwright and Chromium) and commit them. Update the `updated` date in `resources.json`.
+- Nothing in resources may reveal PAYgrade's framework, descriptors, weightings or scoring. Generic, publicly known methods are fine.
+
 ## Making changes
 
 - Run `node build.js` and check the output in `dist/` before committing.

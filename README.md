@@ -28,6 +28,13 @@ The homepage shows your three latest articles, and `/articles/` lists them all. 
 
 Every `:::` block must close with a line containing only `:::`. If something is wrong, the build stops and says which file and what to fix.
 
+## Free resources
+
+- The Resources page at `/resources/` is built from `content/resources.json`.
+- The glossary is `content/resources/glossary.md`: a `## Section` heading, an optional intro paragraph, then `### Term` headings each followed by a definition.
+- To refresh the PDFs after changing a resource, run `python3 tools/make_pdfs.py` (needs Python, Playwright and Chromium), then commit the files in `public/downloads/`.
+- An article can link to its PDF by adding `pdf: /downloads/file-name.pdf` to its settings.
+
 ## Site settings
 
 `site.json` holds the settings used across the site:

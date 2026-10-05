@@ -1,22 +1,36 @@
 <div class="wrap">
 {{nav}}
 
-  <article class="article">
+  <article class="article glossary-page">
     <header class="article-head">
-      <p class="eyebrow">Article · {{eyebrow}}</p>
+      <p class="eyebrow">Free resource · Glossary</p>
       <h1>{{title}}</h1>
       <p class="standfirst">{{standfirst}}</p>
-      <div class="byline"><a href="/">Drew Hajduk</a><time datetime="{{dateISO}}">{{dateLong}}</time><span>{{readingTime}} min read</span></div>
+      <div class="byline"><a href="/">Drew Hajduk</a><span>Last updated <time datetime="{{updatedISO}}">{{updatedLong}}</time></span><span>{{count}} terms</span></div>
       {{download}}
     </header>
 
-{{inShort}}
-
-    <div class="article-body">
-{{body}}
+    <div class="in-short">
+      <p class="eyebrow">In short</p>
+      <p>{{inShort}}</p>
     </div>
 
+    <div class="toc" role="navigation" aria-label="Glossary sections">
+      <p class="eyebrow">Sections</p>
+      <ol>
+{{toc}}
+      </ol>
+    </div>
+
+{{sections}}
+
     <p class="print-only">Building pay or reward software? Book a free 45-minute product review with Drew Hajduk at drewhajduk.co.uk/work-with-me</p>
+
+    <section class="cta">
+      <h2>Building pay or reward software?</h2>
+      <p>If you'd like a second opinion on your product, book a free 45&#8209;minute product review session.</p>
+      <p><a class="button" href="/work-with-me/#free-review">Book a free product review</a></p>
+    </section>
 
     <aside class="author" aria-label="About the author">
       <img src="/drew-headshot.jpg" alt="Drew Hajduk">

@@ -152,6 +152,12 @@ const articles = fs.readdirSync(path.join(ROOT, 'content/articles'))
   .filter(a => a.draft !== 'true')
   .sort((a, b) => b.date.localeCompare(a.date));
 
+// Resources helpers
+const resources = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/resources.json'), 'utf8'));
+const hasFile = p => !!p && fs.existsSync(path.join(ROOT, 'public', p));
+const slugify = s => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const downloadLink = pdf => hasFile(pdf) ? `<p class="download"><a class="more" href="${pdf}" download>Download as PDF ↓</a></p>` : '';
+
 // Article pages
 for (const a of articles) {
   const bodyHtml = blocks(a.body.split('\n'), a);
@@ -169,7 +175,7 @@ for (const a of articles) {
   const page = fill(tpl('article.html'), {
     nav: navFor(false), footer, eyebrow: esc(a.eyebrow || 'Writing'), title: esc(a.title),
     standfirst: inline(a.standfirst || a.summary), dateISO: a.date, dateLong: longDate(a.date), readingTime: minutes,
-    inShort, body: bodyHtml, linkedin: site.linkedin,
+    inShort, body: bodyHtml, linkedin: site.linkedin, download: downloadLink(a.pdf),
   });
   const extra = `<meta name="author" content="Drew Hajduk">\n<meta property="article:published_time" content="${a.date}">\n`;
   write(`articles/${a.slug}/index.html`,
@@ -222,12 +228,61 @@ write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', og
   + fill(tpl('work-with-me.html'), { nav: navFor(false), footer })
   + `\n<script type="application/ld+json">\n${JSON.stringify(wwmLd, null, 2)}\n</script>\n</body>\n</html>\n`);
 
+// Glossary
+const glossary = (() => {
+  const raw = fs.readFileSync(path.join(ROOT, 'content/resources/glossary.md'), 'utf8').replace(/\r\n/g, '\n');
+  const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!m) throw new Error('glossary.md needs settings between --- lines at the top.');
+  const g = {};
+  for (const line of m[1].split('\n')) { const kv = line.match(/^(\w+):\s*(.*)$/); if (kv) g[kv[1]] = kv[2].trim(); }
+  const sections = []; let cur = null, term = null;
+  for (const line of m[2].split('\n')) {
+    const h2 = line.match(/^##\s+(.*)$/), h3 = line.match(/^###\s+(.*)$/);
+    if (h2) { cur = { title: h2[1].trim(), intro: [], terms: [] }; sections.push(cur); term = null; continue; }
+    if (h3) { if (!cur) throw new Error('glossary.md: a "### term" must come after a "## section".'); term = { name: h3[1].trim(), lines: [] }; cur.terms.push(term); continue; }
+    if (term) term.lines.push(line.trim()); else if (cur) cur.intro.push(line.trim());
+  }
+  const paras = lines => lines.join('\n').split(/\n{2,}/).map(p => p.replace(/\n/g, ' ').trim()).filter(Boolean);
+  const plain = t => t.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*/g, '');
+  const pageUrl = '/resources/glossary/';
+  const count = sections.reduce((n, sec) => n + sec.terms.length, 0);
+  const toc = sections.map(sec => `        <li><a href="#${slugify(sec.title)}">${esc(sec.title)}</a></li>`).join('\n');
+  const html = sections.map(sec => `    <section class="glossary-section" id="${slugify(sec.title)}">
+      <h2>${esc(sec.title)}</h2>
+${paras(sec.intro).map(p => `      <p class="section-intro">${inline(p)}</p>`).join('\n')}
+      <dl class="glossary">
+${sec.terms.map(t => `        <div id="${slugify(t.name)}"><dt><a class="term-link" href="#${slugify(t.name)}">${esc(t.name)}</a></dt>${paras(t.lines).map(p => `<dd>${inline(p)}</dd>`).join('')}</div>`).join('\n')}
+      </dl>
+    </section>`).join('\n\n');
+  const ld = {
+    '@context': 'https://schema.org', '@type': 'DefinedTermSet', name: g.title, description: g.description, inLanguage: 'en-GB', dateModified: g.updated,
+    ...(siteUrl ? { url: abs(pageUrl) } : {}), author: { '@type': 'Person', name: 'Drew Hajduk', sameAs: [site.linkedin] },
+    hasDefinedTerm: sections.flatMap(sec => sec.terms.map(t => ({ '@type': 'DefinedTerm', name: t.name, description: plain(paras(t.lines).join(' ')), ...(siteUrl ? { url: abs(`${pageUrl}#${slugify(t.name)}`) } : {}) }))),
+  };
+  const res = resources.find(r => r.url === pageUrl);
+  write('resources/glossary/index.html', head({ title: `${g.title} · Drew Hajduk`, ogTitle: g.title, description: g.description, ogType: 'article', urlPath: pageUrl })
+    + fill(tpl('glossary.html'), { nav: navFor(false), footer, title: esc(g.title), standfirst: inline(g.standfirst), updatedISO: g.updated, updatedLong: longDate(g.updated), count, download: downloadLink(res && res.pdf), inShort: inline(g.inShort), toc, sections: html, linkedin: site.linkedin })
+    + `\n<script type="application/ld+json">\n${JSON.stringify(ld, null, 2)}\n</script>\n</body>\n</html>\n`);
+  return { ...g, count, url: pageUrl };
+})();
+
+// Resources page
+const resourceItem = r => `      <li class="resource">
+        <p class="offer-meta">${esc(r.type)} · Updated ${shortDate(r.updated)}</p>
+        <h2><a href="${r.url}">${esc(r.title)}</a></h2>
+        <p>${esc(r.summary)}</p>
+        <p class="link-row"><a class="more" href="${r.url}">Read online →</a>${hasFile(r.pdf) ? `<a class="more" href="${r.pdf}" download>Download PDF ↓</a>` : ''}</p>
+      </li>`;
+write('resources/index.html', head({ title: 'Free resources · Drew Hajduk', description: 'Free guides, checklists and references for product teams building pay, reward and HR software, from Drew Hajduk.', ogType: 'website', urlPath: '/resources/' })
+  + fill(tpl('resources.html'), { nav: navFor(false), footer, items: resources.map(resourceItem).join('\n') }) + '</body>\n</html>\n');
+
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
 const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than doing it hands-on; design and development are done by the client's team, or by trusted partners he introduces who contract directly with the client and are responsible for their own delivery, with Drew providing product oversight. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
+const llmsResources = '## Free resources\n\n' + resources.map(r => `- [${r.title}](${abs(r.url)}): ${r.summary}${hasFile(r.pdf) ? ` PDF: ${abs(r.pdf)}` : ''}`).join('\n') + '\n';
 const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
-write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsArticles, outro, links].join('\n\n'));
+write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsResources, llmsArticles, outro, links].join('\n\n'));
 
 // robots.txt
 const bots = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
@@ -237,7 +292,7 @@ write('robots.txt', '# Search engines and AI assistants are welcome to read this
 
 // Sitemap and RSS need the real web address, set as "url" in site.json
 if (siteUrl) {
-  const urls = [['/', articles[0]?.date], ['/articles/', articles[0]?.date], ['/work-with-me/', null], ...articles.map(a => [`/articles/${a.slug}/`, a.updated || a.date])];
+  const urls = [['/', articles[0]?.date], ['/articles/', articles[0]?.date], ['/work-with-me/', null], ['/resources/', null], ['/resources/glossary/', glossary.updated], ...articles.map(a => [`/articles/${a.slug}/`, a.updated || a.date])];
   write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
     + urls.map(([p, d]) => `  <url><loc>${siteUrl}${p}</loc>${d ? `<lastmod>${d}</lastmod>` : ''}</url>`).join('\n') + '\n</urlset>\n');
   write('feed.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n`
