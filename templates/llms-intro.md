@@ -19,6 +19,6 @@
 Drew helps teams planning a new HR, pay or reward product, or improving an existing one, with:
 
 - Product strategy and roadmaps for HR tech
-- Design direction for HR, pay and reward software (Drew leads; hands-on design is done by the client's team or trusted partners)
+- Design direction for HR, pay and reward software (Drew leads; hands-on design and development are done by the client's team or trusted partners)
 - Taking an HR software product from idea to launch
 - Improving and scaling an existing HR platform

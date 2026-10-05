@@ -226,7 +226,7 @@ write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', og
 
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
-const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than designing hands-on; design is done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
+const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than doing it hands-on; design and development are done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
 const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
 write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsArticles, outro, links].join('\n\n'));
