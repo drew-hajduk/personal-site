@@ -161,7 +161,7 @@ for (const a of articles) {
   const ld = {
     '@context': 'https://schema.org', '@type': 'BlogPosting', headline: a.title, description: a.description,
     datePublished: a.date, dateModified: a.updated || a.date, inLanguage: 'en-GB',
-    author: { '@type': 'Person', name: 'Drew Hajduk', jobTitle: 'HR Software Product Designer and Founder', sameAs: [site.linkedin], ...(siteUrl ? { url: siteUrl + '/' } : {}) },
+    author: { '@type': 'Person', name: 'Drew Hajduk', jobTitle: 'HR Software Product Leader and Founder', sameAs: [site.linkedin], ...(siteUrl ? { url: siteUrl + '/' } : {}) },
     ...(a.topics ? { about: a.topics.split(',').map(s => s.trim()) } : {}),
     ...(a.image ? { image: abs(a.image) } : {}),
     ...(siteUrl ? { mainEntityOfPage: `${siteUrl}/articles/${a.slug}/` } : {}),
@@ -203,11 +203,34 @@ ${footer}
 write('articles/index.html', head({ title: 'Writing · Drew Hajduk', description: 'Articles by Drew Hajduk on HR software, job evaluation, pay and reward, and product design.', ogType: 'website', urlPath: '/articles/' })
   + listPage + '</body>\n</html>\n');
 
+// Work with me page
+const OFFERS = [
+  { name: 'HR Software Review', price: 4500, unit: null, description: 'A two-week expert review of an HR software product, prototype or plans, with a prioritised list of what to fix first.' },
+  { name: 'Product Foundations Sprint', price: 11000, unit: null, description: 'A six-week sprint to shape a new pay, reward or HR software product: discovery, first-release scope, roadmap and product brief.' },
+  { name: 'Fractional product support: Advisor', price: 1500, unit: 'MON', description: 'About one day a month: monthly strategy session, review of plans and answers to questions within 2 working days.' },
+  { name: 'Fractional product support: Partner', price: 2500, unit: 'MON', description: 'Two days a month: roadmap and priority decisions, reviews of the team\'s designs and builds.' },
+  { name: 'Fractional product support: Lead', price: 4000, unit: 'MON', description: 'One day a week as fractional head of product: direction, planning, directing designers and developers, launch plan.' },
+];
+const wwmDesc = 'Product leadership for teams building pay, reward and HR software. Fixed-price reviews and sprints, and fractional product support from Drew Hajduk, founder of PAYgrade and PAYreview.';
+const wwmLd = {
+  '@context': 'https://schema.org', '@type': 'ProfessionalService', name: 'Drew Hajduk: product leadership for HR software',
+  description: wwmDesc, areaServed: 'GB', ...(siteUrl ? { url: `${siteUrl}/work-with-me/` } : {}),
+  founder: { '@type': 'Person', name: 'Drew Hajduk', sameAs: [site.linkedin] },
+  hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Services', itemListElement: OFFERS.map(o => ({
+    '@type': 'Offer', itemOffered: { '@type': 'Service', name: o.name, description: o.description },
+    priceSpecification: { '@type': 'UnitPriceSpecification', price: o.price, priceCurrency: 'GBP', ...(o.unit ? { unitCode: o.unit } : {}) },
+  })) },
+};
+write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', ogTitle: 'Product leadership for HR software', description: wwmDesc, ogType: 'website', urlPath: '/work-with-me/' })
+  + fill(tpl('work-with-me.html'), { rail, nav: navFor(false), footer })
+  + `\n<script type="application/ld+json">\n${JSON.stringify(wwmLd, null, 2)}\n</script>\n</body>\n</html>\n`);
+
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
+const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}: £${o.price.toLocaleString('en-GB')}${o.unit ? ' a month' : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than designing hands-on; design is done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
 const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n- PAYgrade demo video: https://youtu.be/DYFjOQDFBas\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
-write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsArticles, outro, links].join('\n\n'));
+write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsArticles, outro, links].join('\n\n'));
 
 // robots.txt
 const bots = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended'];
@@ -217,7 +240,7 @@ write('robots.txt', '# Search engines and AI assistants are welcome to read this
 
 // Sitemap and RSS need the real web address, set as "url" in site.json
 if (siteUrl) {
-  const urls = [['/', articles[0]?.date], ['/articles/', articles[0]?.date], ...articles.map(a => [`/articles/${a.slug}/`, a.updated || a.date])];
+  const urls = [['/', articles[0]?.date], ['/articles/', articles[0]?.date], ['/work-with-me/', null], ...articles.map(a => [`/articles/${a.slug}/`, a.updated || a.date])];
   write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`
     + urls.map(([p, d]) => `  <url><loc>${siteUrl}${p}</loc>${d ? `<lastmod>${d}</lastmod>` : ''}</url>`).join('\n') + '\n</urlset>\n');
   write('feed.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n`
