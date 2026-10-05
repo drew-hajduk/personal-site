@@ -27,7 +27,8 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 ## Decisions already made
 
 - No email address anywhere on the site or in the repo (spam). Contact is a form (Cloudflare Turnstile plus a Worker in `worker/index.js` that forwards to email, recipient held in the `CONTACT_TO` secret) with a LinkedIn link alongside. Setup is in README.md.
-- PAYgrade appears with one static screenshot, a customer quote and the demo video. A step-by-step product tour was tried and removed as too promotional.
+- PAYgrade appears with one static screenshot and a customer quote. The demo video and a step-by-step product tour were both removed as too promotional.
+- Photos: `drew-portrait.jpg` (event photo, homepage hero) and `drew-headshot.jpg` (headshot, Work with me page).
 - Only the Knowledge & Expertise level descriptors are public. Never publish screenshots or text showing descriptors for other PAYgrade factors, weightings or scoring logic.
 - Services are on `/work-with-me/`: fractional product leadership only, at Advisor (about 1 day a month, £1,500 a month), Partner (2 days a month, £2,500) and Lead (1 day a week, £4,000). Lead magnet: a free 45-minute product review session (a few each month), booked through the contact form. No paid fixed-price projects or sprints; Drew doesn't do day-to-day delivery. Design is done by the client's team or trusted partners Drew directs. Prices live in `templates/work-with-me.html` and the `OFFERS` list in `build.js`; keep both in step.
 - Customer quotes: Laura Allam (Orders of St John Care Trust) for PAYgrade, Samantha Perry (David Lloyd) for PAYreview. Keep wording exactly as given.

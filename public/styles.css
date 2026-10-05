@@ -92,8 +92,6 @@ p { margin: 0; max-width: 62ch; }
 .demo span { display: flex; flex-direction: column; min-width: 0; }
 .demo strong { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
 .demo small { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.03em; }
-.video { margin-top: 1.25rem; position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--surface); }
-.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .status { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; border: 1px solid var(--rule); padding: 0.2rem 0.6rem; white-space: nowrap; color: var(--muted); }
 .status.live { color: var(--accent); border-color: var(--accent); }
 .status.live::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent); margin-right: 0.45rem; vertical-align: 0.05rem; }
@@ -289,3 +287,10 @@ footer { font-family: var(--font-mono); font-size: var(--step--1); color: var(--
 .free-review .button { align-self: flex-start; }
 .free-review > p:not(.eyebrow), .free-review .checks li { font-size: 1.0625rem; line-height: 1.6; }
 .free-review .small { font-family: var(--font-mono); font-size: var(--step--1) !important; color: var(--muted); letter-spacing: 0.02em; }
+.offers-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 16rem); gap: 2.5rem; align-items: end; }
+.headshot { margin: 0; }
+.headshot img { display: block; width: 100%; height: auto; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 760px) {
+  .offers-head { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
+  .headshot { order: -1; max-width: 12rem; }
+}

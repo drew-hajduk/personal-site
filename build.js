@@ -220,14 +220,14 @@ const wwmLd = {
     priceSpecification: { '@type': 'UnitPriceSpecification', price: o.price, priceCurrency: 'GBP', ...(o.unit ? { unitCode: o.unit } : {}) },
   })) },
 };
-write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', ogTitle: 'Fractional product leadership for HR software', description: wwmDesc, ogType: 'website', urlPath: '/work-with-me/' })
+write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', ogTitle: 'Fractional product leadership for HR software', description: wwmDesc, ogType: 'website', image: '/drew-headshot.jpg', urlPath: '/work-with-me/' })
   + fill(tpl('work-with-me.html'), { rail, nav: navFor(false), footer })
   + `\n<script type="application/ld+json">\n${JSON.stringify(wwmLd, null, 2)}\n</script>\n</body>\n</html>\n`);
 
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
 const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than designing hands-on; design is done by the client's team or trusted partners he directs. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
-const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n- PAYgrade demo video: https://youtu.be/DYFjOQDFBas\n`;
+const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
 write('llms.txt', [tpl('llms-intro.md').trimEnd(), llmsOffers, llmsArticles, outro, links].join('\n\n'));
 

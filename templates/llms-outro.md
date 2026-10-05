@@ -18,4 +18,3 @@ I'm UK-based, proudly up North.
 ## Links
 
 - LinkedIn: https://www.linkedin.com/in/drew-hajduk/
-- PAYgrade demo video: https://youtu.be/DYFjOQDFBas
