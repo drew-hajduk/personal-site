@@ -39,6 +39,7 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 - Signature element: the job evaluation scale (5.0 to 10.0 with half steps) down the left edge, used as the scroll indicator. Keep it.
 - Motion is scroll-linked and subtle, and is switched off for reduced-motion users. Don't add showy effects.
 - Every page must work at phone width with no sideways scrolling.
+- Menu: section links (About, Products, Writing, Contact) scroll the homepage; "Work with me" is the main call to action, styled as an outlined button at the end of the menu, and goes to `/work-with-me/`.
 
 ## Articles
 

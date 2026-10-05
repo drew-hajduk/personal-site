@@ -294,3 +294,9 @@ footer { font-family: var(--font-mono); font-size: var(--step--1); color: var(--
   .offers-head { grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
   .headshot { order: -1; max-width: 12rem; }
 }
+nav .links { align-items: center; margin-left: auto; }
+@media (max-width: 600px) {
+  nav .links { order: 3; flex-basis: 100%; margin-left: 0; }
+}
+nav .nav-cta { color: var(--accent); border: 1.5px solid var(--accent); padding: 0.35rem 0.75rem; transition: background 0.2s ease, color 0.2s ease; }
+nav .nav-cta:hover, nav .nav-cta:focus-visible { background: var(--accent); color: var(--paper); }
