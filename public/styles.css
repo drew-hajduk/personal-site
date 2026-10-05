@@ -7,6 +7,10 @@
   --muted: #5D665A;
   --rule: #C9CFC5;
   --accent: #4C6B2E;
+  --cta: #C6F04E;
+  --cta-hover: #B2DE36;
+  --cta-ink: #161A15;
+  --cta-edge: #161A15;
   --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -21,12 +25,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --paper: #121411; --surface: #1B1F19; --ink: #E7EBE3; --muted: #9AA595;
-    --rule: #2D332A; --accent: #A8C77C; color-scheme: dark;
+    --rule: #2D332A; --accent: #A8C77C; --cta-edge: #C6F04E; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #121411; --surface: #1B1F19; --ink: #E7EBE3; --muted: #9AA595;
-  --rule: #2D332A; --accent: #A8C77C; color-scheme: dark;
+  --rule: #2D332A; --accent: #A8C77C; --cta-edge: #C6F04E; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -102,24 +106,6 @@ p { margin: 0; max-width: 62ch; }
 .shot-inline { margin-top: 0.5rem; }
 .after { grid-column: 2 / 3; align-self: start; min-width: 0; }
 
-/* Evaluation scale rail (wide screens) */
-.rail { display: none; }
-@media (min-width: 1240px) {
-  .rail { position: fixed; z-index: 15; left: 28px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.1rem; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
-  .rail-track { position: relative; height: min(52vh, 26rem); display: flex; flex-direction: column; justify-content: space-between; }
-  .rail-track::before, .rail-fill { content: ""; position: absolute; left: calc(0.35rem - 0.75px); top: 0; bottom: 0; width: 1.5px; }
-  .rail-track::before { background: var(--rule); }
-  .rail-fill { background: var(--accent); transform-origin: 50% 0; transform: scaleY(var(--p)); }
-  .tick { position: relative; display: flex; align-items: center; gap: 0.55rem; height: 0.7rem; font-variant-numeric: tabular-nums; }
-  .tick i { width: 0.7rem; height: 0.7rem; border: 1.5px solid var(--muted); background: var(--paper); transition: background 0.2s ease, border-color 0.2s ease; }
-  .tick.half i { width: 0.45rem; height: 0.45rem; margin-inline: 0.125rem; }
-  .tick.on i { background: var(--accent); border-color: var(--accent); }
-  .tick span { opacity: 0.8; }
-  .rail-read { display: flex; flex-direction: column; gap: 0.15rem; }
-  .rail-read strong { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-  .rail-read span { text-transform: uppercase; letter-spacing: 0.08em; }
-  .progress { display: none !important; }
-}
 .wide { margin: 0; }
 .wide img { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 45% 40%; }
 .wide figcaption { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); margin-top: 0.6rem; }
@@ -173,13 +159,12 @@ p { margin: 0; max-width: 62ch; }
 .faq > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 0.4rem 2rem; padding-block: 1.1rem; border-bottom: 1px solid var(--rule); }
 .faq dt { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; line-height: 1.35; }
 .faq dd { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
+/* Buttons and calls to action: one high-contrast style everywhere */
+button, .button, nav .nav-cta { display: inline-block; font-family: var(--font-mono); font-size: var(--step--1); font-weight: 500; letter-spacing: 0.04em; line-height: 1.2; background: var(--cta); color: var(--cta-ink); border: 1.5px solid var(--cta-edge); padding: 0.75rem 1.1rem; text-decoration: none; cursor: pointer; transition: background 0.2s ease; }
+button:hover, .button:hover, nav .nav-cta:hover, nav a.nav-cta:hover { background: var(--cta-hover); color: var(--cta-ink); }
+button:focus-visible, .button:focus-visible, nav .nav-cta:focus-visible { outline: 2px solid var(--cta-edge); outline-offset: 3px; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 .address { font-family: var(--font-mono); font-size: 1rem; padding: 0.55rem 0.8rem; border: 1.5px solid var(--ink); user-select: all; overflow-wrap: anywhere; }
-button { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); padding: 0.6rem 0.9rem; cursor: pointer; }
-.linkedin { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; padding: 0.6rem 0.2rem; }
-.button { display: inline-block; font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); padding: 0.75rem 1.1rem; text-decoration: none; }
-.button:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-button:hover { background: var(--accent); border-color: var(--accent); }
 
 footer { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); border-top: 1px solid var(--rule); padding-top: 1.25rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
@@ -205,18 +190,8 @@ footer { font-family: var(--font-mono); font-size: var(--step--1); color: var(--
 }
 
 /* Scroll-linked motion: only where supported and wanted; everything is fully visible without it. */
-.progress { display: none; }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .progress {
-      display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-      height: calc(3px + env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px);
-      background: var(--accent); background-clip: content-box;
-      transform-origin: 0 50%; transform: scaleX(0);
-      animation: grow linear both; animation-timeline: scroll(root);
-    }
-    @keyframes grow { to { transform: scaleX(1); } }
-
     .portrait img { animation: drift linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
     @keyframes drift { to { transform: translateY(12%) scale(1.04); } }
 
@@ -298,5 +273,4 @@ nav .links { align-items: center; margin-left: auto; }
 @media (max-width: 600px) {
   nav .links { order: 3; flex-basis: 100%; margin-left: 0; }
 }
-nav .nav-cta { color: var(--accent); border: 1.5px solid var(--accent); padding: 0.35rem 0.75rem; transition: background 0.2s ease, color 0.2s ease; }
-nav .nav-cta:hover, nav .nav-cta:focus-visible { background: var(--accent); color: var(--paper); }
+nav .nav-cta { padding: 0.45rem 0.8rem; }

@@ -129,7 +129,6 @@ const shortDate = d => new Date(d + 'T12:00:00Z').toLocaleDateString('en-GB', { 
 const rssDate = d => new Date(d + 'T09:00:00Z').toUTCString();
 const write = (rel, content) => { const f = path.join(OUT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, content); };
 const footer = tpl('footer.html').trimEnd();
-const rail = tpl('rail.html').trimEnd();
 const navFor = isHome => fill(tpl('nav.html').trimEnd(), { home: isHome ? '' : '/', brandLink: isHome ? '#top' : '/' });
 
 function head({ title, ogTitle, description, ogType, image, urlPath, extraHead = '' }) {
@@ -168,7 +167,7 @@ for (const a of articles) {
   };
   const inShort = a.inShort ? `    <div class="in-short">\n      <p class="eyebrow">In short</p>\n      <p>${inline(a.inShort)}</p>\n    </div>` : '';
   const page = fill(tpl('article.html'), {
-    rail, nav: navFor(false), footer, eyebrow: esc(a.eyebrow || 'Writing'), title: esc(a.title),
+    nav: navFor(false), footer, eyebrow: esc(a.eyebrow || 'Writing'), title: esc(a.title),
     standfirst: inline(a.standfirst || a.summary), dateISO: a.date, dateLong: longDate(a.date), readingTime: minutes,
     inShort, body: bodyHtml, linkedin: site.linkedin,
   });
@@ -180,15 +179,14 @@ for (const a of articles) {
 
 // Homepage
 const homeBody = fill(tpl('home.html'), {
-  rail, nav: navFor(true), footer, linkedin: site.linkedin, turnstileSiteKey: site.turnstileSiteKey || '',
+  nav: navFor(true), footer, linkedin: site.linkedin, turnstileSiteKey: site.turnstileSiteKey || '',
   writing: articles.slice(0, 3).map(writingItem).join('\n'),
 });
 write('index.html', head({ title: site.homeTitle, description: site.homeDescription, ogType: 'profile', urlPath: '/' })
   + homeBody + '\n' + tpl('home-ld.html') + '</body>\n</html>\n');
 
 // All writing page
-const listPage = `${rail}
-<div class="wrap">
+const listPage = `<div class="wrap">
 ${navFor(false)}
   <section class="col" style="max-width:none" data-label="Writing">
     <p class="eyebrow">Writing</p>
@@ -221,7 +219,7 @@ const wwmLd = {
   })) },
 };
 write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', ogTitle: 'Fractional product leadership for HR software', description: wwmDesc, ogType: 'website', image: '/drew-headshot.jpg', urlPath: '/work-with-me/' })
-  + fill(tpl('work-with-me.html'), { rail, nav: navFor(false), footer })
+  + fill(tpl('work-with-me.html'), { nav: navFor(false), footer })
   + `\n<script type="application/ld+json">\n${JSON.stringify(wwmLd, null, 2)}\n</script>\n</body>\n</html>\n`);
 
 // llms.txt

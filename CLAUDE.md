@@ -36,10 +36,11 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 ## Design system
 
 - Tokens are at the top of `public/styles.css`: muted green accent, cool off-white paper, light and dark themes. Fonts: Bricolage Grotesque (display), Geist (body), Geist Mono (labels).
-- Signature element: the job evaluation scale (5.0 to 10.0 with half steps) down the left edge, used as the scroll indicator. Keep it.
+- No scroll indicators: the evaluation scale sidebar and the top progress line were removed at Drew's request. Don't add them back.
+- Buttons and calls to action share one high-contrast style: lime fill (`--cta`), dark text (`--cta-ink`) and a dark edge (`--cta-edge`, lime in dark mode). Use `.button` (or a `<button>`) for every call to action; don't style one-off buttons. Secondary text links use `.more`.
 - Motion is scroll-linked and subtle, and is switched off for reduced-motion users. Don't add showy effects.
 - Every page must work at phone width with no sideways scrolling.
-- Menu: section links (About, Products, Writing, Contact) scroll the homepage; "Work with me" is the main call to action, styled as an outlined button at the end of the menu, and goes to `/work-with-me/`.
+- Menu: section links (About, Products, Writing, Contact) scroll the homepage; "Work with me" is the main call to action, styled as a button at the end of the menu, and goes to `/work-with-me/`.
 
 ## Articles
 
