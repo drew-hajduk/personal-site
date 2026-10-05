@@ -102,7 +102,7 @@ The Directive doesn't apply in Great Britain, which has its own gender pay gap r
 
 Pay transparency turns pay data into evidence. Employers will need to show how roles were valued, why people are paid what they are, and what they're doing about gaps. Software that keeps that evidence as part of everyday work, rather than rebuilding it from spreadsheets each year, will be the software reward teams choose.
 
-If you're building HR or reward software and want a second opinion on how ready it is, [book a free product review session](/work-with-me/#free-review).
+If you're working on pay transparency features in HR software, I'd like to hear how you're approaching them. [Get in touch](/#contact).
 
 *This checklist is a product guide, not legal advice. Check the national law that applies to each employer.*
 

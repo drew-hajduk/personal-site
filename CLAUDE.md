@@ -5,14 +5,14 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 ## What the site is for
 
 - To promote Drew as a product designer and businessman, not to promote PAYgrade. Product mentions should support his credibility, never read as product marketing.
-- Main audience: people who want help building HR, pay or reward software. Secondary: HR and reward professionals.
+- Drew is a builder, not a consultant: the site is his track record as a founder and product leader. Main audience: people in HR, pay and reward software (potential partners, collaborators, event organisers). Secondary: HR and reward professionals.
 - A key goal is being found and cited by AI assistants (ChatGPT, Perplexity, Claude, Gemini) as well as search engines.
 
 ## Facts about Drew
 
 - Drew Hajduk, UK-based, proudly up North (North of England).
 - HR software product designer and founder. Founded and launched PAYgrade (job evaluation and salary banding platform, around 25 organisations) and PAYreview (pay review software).
-- Company MD with 16 years in the design industry. A product designer by trade who now leads rather than designs hands-on: describe him as an HR software product leader, never as someone doing hands-on design. Covers design direction, product strategy and continuous development, secure and reliable software (with technical and security partners), and building businesses. Runs other businesses alongside client work, so capacity is limited.
+- Company MD with 16 years in the design industry. A product designer by trade who now leads rather than designs hands-on: describe him as an HR software product leader, never as someone doing hands-on design. Covers design direction, product strategy and continuous development, secure and reliable software (with technical and security partners), and building businesses. Runs product-focused digital businesses.
 - LinkedIn: https://www.linkedin.com/in/drew-hajduk/
 - Do not invent biography, clients, numbers or claims. Ask Drew if something is needed.
 
@@ -28,9 +28,9 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 
 - No email address anywhere on the site or in the repo (spam). Contact is a form (Cloudflare Turnstile plus a Worker in `worker/index.js` that forwards to email, recipient held in the `CONTACT_TO` secret) with a LinkedIn link alongside. Setup is in README.md.
 - PAYgrade appears with one static screenshot and a customer quote. The demo video and a step-by-step product tour were both removed as too promotional.
-- Photos: `drew-portrait.jpg` (event photo, homepage hero) and `drew-headshot.jpg` (headshot, Work with me page).
+- Photos: `drew-portrait.jpg` (event photo, homepage hero) and `drew-headshot.jpg` (headshot, author box on articles and the glossary).
 - Only the Knowledge & Expertise level descriptors are public. Never publish screenshots or text showing descriptors for other PAYgrade factors, weightings or scoring logic.
-- Services are on `/work-with-me/`, productised with exact inclusions and exclusions. Two levels only (no Lead level; Drew doesn't have time for a day a week): Advisor, £1,500 a month + VAT (about 6 hours: one 90-minute session a month, up to 2 focused reviews between sessions, email replies within 2 working days, written notes) and Partner, £2,500 a month + VAT (about 2 days: a 90-minute session every two weeks, up to 4 focused reviews, email replies within 1 working day, notes, prioritised list, quarterly one-page roadmap). Both include onboarding; bigger reviews such as full specs are agreed separately. Lead magnet: free 45-minute product review session plus a written note of the top three actions within 2 working days, a few each month, booked through the contact form. A "What's not included" list (hands-on design, code, whole-system audits, project management, acting as head of product, hiring or managing staff, delivery responsibility, legal or pay advice, selling, extra time) is part of the offer. Don't mention billing in advance or unused time on the site. Places per quarter not yet decided: say "a small number of clients each quarter". Design and development are done by the client's team, or by trusted partners Drew introduces who contract directly with the client and are responsible for their own delivery. Drew provides oversight, never delivery responsibility: avoid wording like "sign off", "own the launch", "one package" or anything implying he answers for delays or defects. Prices live in `templates/work-with-me.html` and the `OFFERS` list in `build.js`; keep both in step.
+- No consulting or services. Drew enjoys building products more than consulting, so the site offers no services, prices, retainers or free review sessions. Don't add them back. Contact is for opportunities: partnerships and integrations, new products and collaborations, speaking, podcasts and events. The old `/work-with-me/` page was removed and redirects to `/#contact` (`public/_redirects`). Selling digital products or small tools may be tried later, only if Drew asks.
 - Customer quotes: Laura Allam (Orders of St John Care Trust) for PAYgrade, Samantha Perry (David Lloyd) for PAYreview. Keep wording exactly as given.
 
 ## Design system
@@ -40,7 +40,7 @@ This is Drew Hajduk's personal website, published at https://drewhajduk.co.uk. R
 - Buttons and calls to action share one high-contrast style: lime fill (`--cta`), dark text (`--cta-ink`) and a dark edge (`--cta-edge`, lime in dark mode). Use `.button` (or a `<button>`) for every call to action; don't style one-off buttons. Text links share one style: green (`--accent`) and underlined, darkening on hover, inline or as `.more` (mono, for standalone links like "All writing →"). Only the menu, brand, buttons and the writing list rows are exempt.
 - Motion is scroll-linked and subtle, and is switched off for reduced-motion users. Don't add showy effects.
 - Every page must work at phone width with no sideways scrolling.
-- Menu: section links (About, Products, Writing, Contact) scroll the homepage; "Work with me" is the main call to action, styled as a button at the end of the menu, and goes to `/work-with-me/`.
+- Menu: section links (About, Products, Writing) scroll the homepage; "Get in touch" is the main call to action, styled as a button at the end of the menu, and goes to `/#contact`.
 
 ## Articles
 

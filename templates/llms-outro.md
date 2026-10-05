@@ -1,13 +1,13 @@
 ## FAQ
 
 ### What does Drew Hajduk do?
-I'm a product leader and founder with a background in design. I lead the design of pay and reward software for HR teams, and I founded and launched PAYgrade and PAYreview.
+I'm a founder and product leader with a background in design. I build pay and reward software for HR teams, and I founded and launched PAYgrade and PAYreview.
 
-### Can you help me build HR software?
-Yes. I work with teams planning a new HR, pay or reward product, and with companies improving one they already have. That can mean product strategy, briefing your designers and developers and reviewing their work, or taking a product from idea to launch.
+### What is Drew Hajduk working on now?
+I run PAYgrade, a job evaluation and salary banding platform, alongside other product-focused digital businesses. I also write about pay, reward and building HR software, and share free resources for people working in the field.
 
-### Why work with someone who knows HR and reward?
-Pay software has to handle job evaluation methods, grading structures, pay ranges and the way reward teams actually work. I've led and launched products in this space, so we spend our time on your product, not on learning the domain.
+### How can I get in touch with Drew Hajduk?
+Use the contact form on this site, or message me on LinkedIn. I'm always happy to talk about partnerships, new products, speaking or anything pay and reward.
 
 ### What are PAYgrade and PAYreview?
 PAYgrade is a job evaluation and salary banding platform used by around 25 organisations. PAYreview is software for running pay reviews. I founded and launched both.
