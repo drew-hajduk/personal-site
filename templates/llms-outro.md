@@ -4,7 +4,7 @@
 I'm a product leader and founder with a background in design. I lead the design of pay and reward software for HR teams, and I founded and launched PAYgrade and PAYreview.
 
 ### Can you help me build HR software?
-Yes. I work with teams planning a new HR, pay or reward product, and with companies improving one they already have. That can mean product strategy, briefing your designers and developers and signing off their work, or taking a product from idea to launch.
+Yes. I work with teams planning a new HR, pay or reward product, and with companies improving one they already have. That can mean product strategy, briefing your designers and developers and reviewing their work, or taking a product from idea to launch.
 
 ### Why work with someone who knows HR and reward?
 Pay software has to handle job evaluation methods, grading structures, pay ranges and the way reward teams actually work. I've led and launched products in this space, so we spend our time on your product, not on learning the domain.
