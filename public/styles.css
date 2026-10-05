@@ -330,3 +330,11 @@ nav .nav-cta { padding: 0.45rem 0.8rem; }
   .glossary { margin-top: 0.6rem; }
   * { animation: none !important; transition: none !important; }
 }
+
+/* Productised offer details */
+.offer-price span { font-family: var(--font-mono); font-weight: 400; font-size: var(--step--1); letter-spacing: 0.04em; color: var(--muted); }
+.offer-fit { font-weight: 500; color: var(--ink) !important; }
+.both { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.25rem 1.5rem; background: var(--surface); }
+.excludes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.excludes li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.8rem; align-items: baseline; font-size: 1.0625rem; line-height: 1.55; }
+.excludes li::before { content: "\00d7"; font-family: var(--font-mono); font-size: 1rem; line-height: 1; color: var(--muted); width: 0.75rem; text-align: center; }

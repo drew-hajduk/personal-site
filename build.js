@@ -209,19 +209,18 @@ write('articles/index.html', head({ title: 'Writing · Drew Hajduk', description
 
 // Work with me page
 const OFFERS = [
-  { name: 'Free product review session', price: 0, unit: null, description: 'A free 45-minute video call reviewing an HR software product, prototype or plans, with the three things to fix or decide first.' },
-  { name: 'Fractional product support: Advisor', price: 1500, unit: 'MON', description: 'About one day a month: monthly strategy session, review of plans and answers to questions within 2 working days.' },
-  { name: 'Fractional product support: Partner', price: 2500, unit: 'MON', description: 'Two days a month: roadmap and priority decisions, reviews of the team\'s designs and builds.' },
-  { name: 'Fractional product support: Lead', price: 4000, unit: 'MON', description: 'One day a week as fractional head of product: direction, strategic planning, briefing designers and developers and reviewing their work, shaping the launch plan.' },
+  { name: 'Free product review session', price: 0, unit: null, description: 'A free 45-minute video call reviewing an HR software product, prototype or plans, followed by a short written note with the three things to fix or decide first.' },
+  { name: 'Fractional product support: Advisor', price: 1500, unit: 'MON', description: 'About 6 hours a month: one 90-minute strategy session, up to 2 focused reviews between sessions, replies by email within 2 working days, and written session notes.' },
+  { name: 'Fractional product support: Partner', price: 2500, unit: 'MON', description: 'About 2 days a month: a 90-minute session every two weeks, up to 4 focused reviews between sessions, replies by email within 1 working day, session notes, a prioritised list of what to build next and a quarterly one-page roadmap.' },
 ];
-const wwmDesc = 'Fractional product leadership for teams building pay, reward and HR software, at three levels of involvement, from Drew Hajduk, founder of PAYgrade and PAYreview.';
+const wwmDesc = 'Fractional product leadership for teams building pay, reward and HR software, at two levels of involvement, from Drew Hajduk, founder of PAYgrade and PAYreview.';
 const wwmLd = {
   '@context': 'https://schema.org', '@type': 'ProfessionalService', name: 'Drew Hajduk: fractional product leadership for HR software',
   description: wwmDesc, areaServed: 'GB', ...(siteUrl ? { url: `${siteUrl}/work-with-me/` } : {}),
   founder: { '@type': 'Person', name: 'Drew Hajduk', sameAs: [site.linkedin] },
   hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Services', itemListElement: OFFERS.map(o => ({
     '@type': 'Offer', itemOffered: { '@type': 'Service', name: o.name, description: o.description },
-    priceSpecification: { '@type': 'UnitPriceSpecification', price: o.price, priceCurrency: 'GBP', ...(o.unit ? { unitCode: o.unit } : {}) },
+    priceSpecification: { '@type': 'UnitPriceSpecification', price: o.price, priceCurrency: 'GBP', valueAddedTaxIncluded: false, ...(o.unit ? { unitCode: o.unit } : {}) },
   })) },
 };
 write('work-with-me/index.html', head({ title: 'Work with me · Drew Hajduk', ogTitle: 'Fractional product leadership for HR software', description: wwmDesc, ogType: 'website', image: '/drew-headshot.jpg', urlPath: '/work-with-me/' })
@@ -278,7 +277,7 @@ write('resources/index.html', head({ title: 'Free resources · Drew Hajduk', des
 
 // llms.txt
 const llmsArticles = '## Articles\n\n' + articles.map(a => `- [${a.title}](${abs(`/articles/${a.slug}/`)}): ${a.summary}`).join('\n') + '\n';
-const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than doing it hands-on; design and development are done by the client's team, or by trusted partners he introduces who contract directly with the client and are responsible for their own delivery, with Drew providing product oversight. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
+const llmsOffers = '## Services\n\n' + OFFERS.map(o => `- ${o.name}${o.price ? ': £' + o.price.toLocaleString('en-GB') + (o.unit ? ' a month plus VAT' : '') : ''}. ${o.description}`).join('\n') + `\n\nDrew leads the work rather than doing it hands-on; design and development are done by the client's team, or by trusted partners he introduces who contract directly with the client and are responsible for their own delivery, with Drew providing product oversight. Not included: hands-on design, code, project management, acting as head of product, delivery responsibility, or legal and pay advice for a specific employer. He takes on a small number of clients each quarter. Details: ${abs('/work-with-me/')}\n`;
 const llmsResources = '## Free resources\n\n' + resources.map(r => `- [${r.title}](${abs(r.url)}): ${r.summary}${hasFile(r.pdf) ? ` PDF: ${abs(r.pdf)}` : ''}`).join('\n') + '\n';
 const links = `## Links\n\n- LinkedIn: ${site.linkedin}\n`;
 const outro = tpl('llms-outro.md').replace(/## Links[\s\S]*$/, '').trimEnd();
