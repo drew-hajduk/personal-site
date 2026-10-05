@@ -208,7 +208,7 @@ const OFFERS = [
   { name: 'Free product review session', price: 0, unit: null, description: 'A free 45-minute video call reviewing an HR software product, prototype or plans, with the three things to fix or decide first.' },
   { name: 'Fractional product support: Advisor', price: 1500, unit: 'MON', description: 'About one day a month: monthly strategy session, review of plans and answers to questions within 2 working days.' },
   { name: 'Fractional product support: Partner', price: 2500, unit: 'MON', description: 'Two days a month: roadmap and priority decisions, reviews of the team\'s designs and builds.' },
-  { name: 'Fractional product support: Lead', price: 4000, unit: 'MON', description: 'One day a week as fractional head of product: direction, planning, directing designers and developers, launch plan.' },
+  { name: 'Fractional product support: Lead', price: 4000, unit: 'MON', description: 'One day a week as fractional head of product: direction, strategic planning, briefing designers and developers and signing off their work, launch plan.' },
 ];
 const wwmDesc = 'Fractional product leadership for teams building pay, reward and HR software, at three levels of involvement, from Drew Hajduk, founder of PAYgrade and PAYreview.';
 const wwmLd = {
