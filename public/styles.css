@@ -55,8 +55,10 @@ nav::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; wid
 .brand-display { font-family: var(--font-display); font-size: 1.3rem; line-height: 1; letter-spacing: -0.02em; text-transform: none; color: var(--ink); opacity: var(--h); font-weight: calc(400 + 400 * var(--h)); font-variation-settings: "wdth" calc(75 + 25 * var(--h)); translate: 0 calc((1 - var(--h)) * 10px); }
 nav .links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 nav a { text-decoration: none; color: var(--muted); }
-a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
-a:hover, nav a:hover { color: var(--accent); }
+/* Text links: one style everywhere. Green, underlined, darken on hover. */
+a { color: var(--accent); text-decoration: underline; text-decoration-color: currentColor; text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color 0.2s ease; }
+a:hover { color: var(--ink); text-decoration-thickness: 2px; }
+nav a:hover { color: var(--ink); }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
 .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 3rem; align-items: end; }
@@ -124,7 +126,6 @@ p { margin: 0; max-width: 62ch; }
 .article-head h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.03em; }
 .standfirst { font-size: var(--step-1); line-height: 1.45; margin: 0; }
 .byline { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.04em; }
-.byline a { color: var(--ink); text-decoration: none; }
 .in-short { background: var(--surface); padding: 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .in-short p:not(.eyebrow) { font-family: var(--font-display); font-weight: 500; font-size: 1.15rem; line-height: 1.45; }
 .prose { display: flex; flex-direction: column; gap: 1.1rem; }
@@ -135,7 +136,7 @@ p { margin: 0; max-width: 62ch; }
 .article-body > blockquote { margin: 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
 .article-body > .points { margin-block: 1rem; }
 .article-body code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface); padding: 0.1em 0.3em; }
-.more { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; text-decoration: none; }
+.more { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.04em; }
 .prose p, .point p { font-size: 1.0625rem; line-height: 1.7; }
 .points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1.5px solid var(--ink); }
 .point { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 0 1rem; padding-block: 2rem; border-bottom: 1px solid var(--rule); }
