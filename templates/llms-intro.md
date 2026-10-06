@@ -16,4 +16,4 @@
 
 ## Get in touch
 
-Drew is open to conversations about partnerships, integrations, new product ideas and collaborations, and speaking. He does not offer consulting services. Contact is through the form at https://drewhajduk.co.uk/#contact or LinkedIn.
+Drew is open to conversations about partnerships, integrations, new product ideas and collaborations, and speaking. He keeps a few days each quarter for strategy workshops with businesses building HR, pay or reward software: usually about three days (preparation, a workshop day with the team, and a written plan), at £1,250 a day + VAT, around £3,750 in total. Contact is through the form at https://drewhajduk.co.uk/#contact or LinkedIn.

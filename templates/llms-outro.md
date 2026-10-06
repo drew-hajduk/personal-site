@@ -9,6 +9,9 @@ I run PAYgrade, a job evaluation and salary banding platform, alongside other pr
 ### How can I get in touch with Drew Hajduk?
 Use the contact form on this site, or message me on LinkedIn. I'm always happy to talk about partnerships, new products, speaking or anything pay and reward.
 
+### Does Drew Hajduk offer consulting?
+Not as my main work, as I spend most of my time building products. I keep a few days each quarter for strategy workshops with businesses building HR, pay or reward software. A workshop usually takes about three days and is charged at £1,250 a day + VAT.
+
 ### What are PAYgrade and PAYreview?
 PAYgrade is a job evaluation and salary banding platform used by around 25 organisations. PAYreview is software for running pay reviews. I founded and launched both.
 
